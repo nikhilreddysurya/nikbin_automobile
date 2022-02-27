@@ -20,12 +20,6 @@ pipeline {
                  sh 'aws s3 cp s3://jenkins-practice/nikbin_automobile/automobile.war /home/ubuntu/apache-tomcat-9.0.58/webapps/'
             }
         }
-	stage('node2-Deployment') {
-	   agent node2
-           steps {
-                sh 'aws s3 cp s3://jenkins-practice/nikbin_automobile/automobile.war /home/ubuntu/apache-tomcat-9.0.58/webapps/'
-            }
-        }
-	}
+    }
     
 }
