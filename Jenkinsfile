@@ -3,15 +3,15 @@ pipeline {
     stages {
         stage('Code Build') {
             steps {
-                 git credentialsId: 'git-nikhil-creds', url: 'https://github.com/nikhilreddysurya/welcomeApp.git'
+                 git credentialsId: 'git-nikhil-creds', url: 'https://github.com/nikhilreddysurya/nikbin_automobile.git'
                  sh 'mvn package'
             }
         }
         stage('Package upload') {
             steps {
-                 sh '''aws s3 cp target/welcomeapp.war s3://jenkins-practice/welcomeapp-war-files/welcomeapp.war
+                 sh '''aws s3 cp target/automobile.war s3://jenkins-practice/nikbin_automobile/automobile.war
                  sleep 5s
-                 aws s3 cp target/welcomeapp.war  s3://jenkins-practice/welcomeapp-war-files/welcomeapp-$BUILD_NUMBER.war'''
+                 aws s3 cp target/automobile.war  s3://jenkins-practice/nikbin_automobile/automobile-$BUILD_NUMBER.war'''
             }
 		}
         stage('node1-Deployment') {
