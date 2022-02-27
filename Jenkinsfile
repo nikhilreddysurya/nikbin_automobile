@@ -14,9 +14,16 @@ pipeline {
                  aws s3 cp target/welcomeapp.war  s3://jenkins-practice/welcomeapp-war-files/welcomeapp-$BUILD_NUMBER.war'''
             }
 		}
-        stage('Deployment') {
+        stage('node1-Deployment') {
+	    agent node1
             steps {
                  sh 'aws s3 cp s3://jenkins-practice/nikbin_automobile/automobile.war /home/ubuntu/apache-tomcat-9.0.58/webapps/'
+            }
+        }
+	stage('node2-Deployment') {
+	   agent node2
+           steps {
+                sh 'aws s3 cp s3://jenkins-practice/nikbin_automobile/automobile.war /home/ubuntu/apache-tomcat-9.0.58/webapps/'
             }
         }
 	}
